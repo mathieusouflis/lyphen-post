@@ -22,6 +22,7 @@ const Login = () => {
       }
     })
     const loginJSON = login.json()
+    console.log(loginJSON)
     if (loginJSON.json === 200) {
       console.log("Loged")
     } else {
