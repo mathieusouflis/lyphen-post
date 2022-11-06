@@ -42,7 +42,7 @@ const Login = () => {
             <SubmitButton value="Continue" />
             <div className="h-px my-5 bg-zinc-300 dark:bg-zinc-500" />
             <p className="flex flex-row gap-1 justify-center">
-              <p className="text-black dark:text-white">Don't have an account ?</p>
+              <span className="text-black dark:text-white">Don't have an account ?</span>
               <Link href="/register" className="text-blue-600 dark:text-yellow-400 hover:underline underline-offset-auto">Register !</Link>
             </p>
           </form>
