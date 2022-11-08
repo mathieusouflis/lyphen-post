@@ -21,7 +21,7 @@ const Register = () => {
     } else {
       setUsernameLengthStatus(true)
     }
-    const check = await fetch("/api/validators/usernameValidator", {
+    const check = await fetch("/api/validators/usernamevalidator", {
       method: "POST",
       body: JSON.stringify({ username: username_loc }),
       headers: {
@@ -63,7 +63,7 @@ const Register = () => {
     //   setemailValidityStatus(false)
     //   return false
     // }
-    const check = await fetch('/api/validators/emailValidator', {
+    const check = await fetch('/api/validators/emailvalidator', {
       method: "POST",
       body: JSON.stringify({ email: email_loc }),
       headers: {
