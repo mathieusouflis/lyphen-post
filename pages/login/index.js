@@ -21,9 +21,7 @@ const Login = () => {
         'Content-type': 'application/json; charset=UTF-8'
       }
     })
-    const loginJSON = login.json()
-    console.log(loginJSON)
-    if (loginJSON.json === 200) {
+    if (login.status === 200) {
       console.log("Loged")
     } else {
       setUserValidity(false)

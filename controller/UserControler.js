@@ -4,7 +4,7 @@ class UserControler {
   static async create(username, email, password) {
     await User.create({
       username: username,
-      email: email,
+      email: email.toLowerCase(),
       password: password,
     })
   }

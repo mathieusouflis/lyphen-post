@@ -52,9 +52,8 @@ class DatabaseControler {
     /* connecting to our database */
     const db = mongoose.connect(process.env.MONGODB_URI)
 
-    connection.isConnected = db.connections[0].readyState
+    connection.isConnected = db.readyState
 
   }
 }
-
 module.exports = { DatabaseControler }

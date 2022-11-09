@@ -4,12 +4,12 @@ import * as R from 'ramda'
 import Image from "next/image"
 
 //COMPONENT IMPORT
-import Post from "../components/Post"
-import HeaderButtons from "../components/HeaderButtons"
+import Post from "/components/Post"
+import HeaderButtons from "/components/HeaderButtons"
 
 //ASSETS IMPORT
-import butterWhiteIcon from "../assets/icons/ButterLogoWhiteRounded.png"
-import butterBlackIcon from "../assets/icons/ButterLogoBlackRounded.png"
+import butterWhiteIcon from "/assets/icons/ButterLogoWhiteRounded.png"
+import butterBlackIcon from "/assets/icons/ButterLogoBlackRounded.png"
 
 const Home = () => {
 
