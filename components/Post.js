@@ -92,7 +92,7 @@ const Post = ({ post }) => {
           </div>
           <div className="image">
             {R.map((image) => {
-              return <img src={image} alt="" className="rounded-xl w-full lg:h-[430px] object-cover" onClick={() => {
+              return <img key={image} src={image} alt="" className="rounded-xl w-full lg:h-[430px] object-cover" onClick={() => {
                 setVueImage(true)
                 setVueImageLink(image)
               }} />

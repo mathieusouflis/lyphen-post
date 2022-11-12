@@ -1,30 +1,30 @@
 import { useState } from "react";
-import Link from "next/link"
+import Link from "next/link";
 import { useRouter } from "next/router";
-import Input from "/components/Input.js"
-import SubmitButton from "/components/SubmitButton.js"
+import Input from "/components/Input.js";
+import SubmitButton from "/components/SubmitButton.js";
 
 const Register = () => {
   const router = useRouter();
-  const [usernameUsedStatus, setUsernameValidityStatus] = useState(true)
-  const [usernameLengthStatus, setUsernameLengthStatus] = useState(true)
-  const [emailValidityStatus, setemailValidityStatus] = useState(true)
-  const [passwordStatus, setPasswordStatus] = useState(true)
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [usernameUsedStatus, setUsernameValidityStatus] = useState(true);
+  const [usernameLengthStatus, setUsernameLengthStatus] = useState(true);
+  const [emailValidityStatus, setemailValidityStatus] = useState(true);
+  const [passwordStatus, setPasswordStatus] = useState(true);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const checkUsernameLenght = async (username_loc) => {
     if (username_loc.length < 2) {
-      setUsernameLengthStatus(false)
-      return
+      setUsernameLengthStatus(false);
+      return;
     } else {
-      setUsernameLengthStatus(true)
+      setUsernameLengthStatus(true);
     }
   }
 
   const submitRegister = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const register = await fetch('/api/user/create/', {
       method: "POST",
@@ -37,15 +37,15 @@ const Register = () => {
         'Content-type': 'application/json; charset=UTF-8'
       }
     })
-    const registerJSON = await register.json()
-    console.log(registerJSON)
+    const registerJSON = await register.json();
+    console.log(registerJSON);
     if (register.status != 200) {
-      !registerJSON.usernameValidity ? setUsernameValidityStatus(false) : setUsernameValidityStatus(true)
-      !registerJSON.emailValidity ? setemailValidityStatus(false) : setemailValidityStatus(true)
-      !registerJSON.passwordValidity ? setPasswordStatus(false) : setPasswordStatus(true)
-      return
+      !registerJSON.usernameValidity ? setUsernameValidityStatus(false) : setUsernameValidityStatus(true);
+      !registerJSON.emailValidity ? setemailValidityStatus(false) : setemailValidityStatus(true);
+      !registerJSON.passwordValidity ? setPasswordStatus(false) : setPasswordStatus(true);
+      return;
     }
-    router.push("/login")
+    router.push("/login");
 
   }
 
