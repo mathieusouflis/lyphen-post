@@ -12,6 +12,7 @@ export default NextAuth({
         DatabaseControler.connect()
         const user = await User.findOne({ email: credentials.email })
         if (!user) throw new Error("User not found")
+        console.log("test")
 
         const checkPassword = await compare(credentials.password, user.password)
 
