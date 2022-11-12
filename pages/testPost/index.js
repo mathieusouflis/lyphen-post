@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+const { useRouter } = require("next/router");
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Testpost = () => {
-  const [text, setText] = useState("")
-  const [images, setImages] = useState([])
-  const [imagePreview, setImagePreview] = useState()
-  return (
-    <form onSubmit={async (e) => {
+  const [text, setText] = useState("");
+  const [images, setImages] = useState([]);
+  const [imagePreview, setImagePreview] = useState();
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!session && status != "loading") router.push('/login');
+  }, [session, status]);
+
+  return session
+    ? <form onSubmit={async (e) => {
       e.preventDefault()
       const requestPost = await fetch('/api/post/create', {
         method: "POST",
@@ -38,7 +47,7 @@ const Testpost = () => {
       <input type="submit" value="submit" />
       {imagePreview ? <img src={imagePreview} /> : null}
     </form>
-  )
+    : null;
 }
 
-export default Testpost
+export default Testpost;
