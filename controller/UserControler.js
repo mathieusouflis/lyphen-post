@@ -1,4 +1,4 @@
-const { User } = require("../Model/User.js")
+const { User } = require("/Model/User.js")
 
 class UserControler {
   static async create(username, email, password) {

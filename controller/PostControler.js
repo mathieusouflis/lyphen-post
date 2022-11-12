@@ -1,4 +1,4 @@
-const { Post } = require('../Model/Posts')
+const { Post } = require('/Model/Posts')
 
 class PostControler {
 

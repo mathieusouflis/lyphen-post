@@ -1,7 +1,7 @@
 //CONTROLERS IMPORTS
-const { UserControler } = require('../../../controller/UserControler')
-const { DatabaseControler } = require('../../../controller/DatabaseControler')
-const { usernameValidator } = require('../../../lib/validators/usernameValidator')
+const { UserControler } = require('/controller/UserControler')
+const { DatabaseControler } = require('/controller/DatabaseControler')
+const { usernameValidator } = require('/lib/validators/usernameValidator')
 const { emailValidator } = require('/lib/validators/emailValidator')
 const { passwordValidator } = require('/lib/validators/passwordValidator')
 const createUser = async (req, res) => {

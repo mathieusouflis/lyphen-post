@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import Input from "../../components/Input"
-import SubmitButton from "../../components/SubmitButton.js"
+import Input from "/components/Input"
+import SubmitButton from "/components/SubmitButton.js"
+const { useSession, signIn, signOut } = require("next-auth/react")
 
 
 const Login = () => {
@@ -11,21 +12,28 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault()
-    const login = await fetch('/api/login/', {
-      method: "POST",
-      body: JSON.stringify({
-        email: email,
-        password: password
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
+    const status = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+      callbackUrl: '/'
     })
-    if (login.status === 200) {
-      console.log("Loged")
-    } else {
-      setUserValidity(false)
-    }
+    // console.log(status)
+    // const login = await fetch('/api/login/', {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password
+    //   }),
+    //   headers: {
+    //     'Content-type': 'application/json; charset=UTF-8'
+    //   }
+    // })
+    // if (login.status === 200) {
+    //   console.log("Loged")
+    // } else {
+    //   setUserValidity(false)
+    // }
 
   }
 

@@ -1,5 +1,5 @@
-const { PostControler } = require('../../../controller/PostControler')
-const { DatabaseControler } = require('../../../controller/DatabaseControler')
+const { PostControler } = require('/controller/PostControler')
+const { DatabaseControler } = require('/controller/DatabaseControler')
 
 const likePost = async (req, res) => {
   DatabaseControler.connect()

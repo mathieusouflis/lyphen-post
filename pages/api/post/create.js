@@ -1,7 +1,5 @@
-import create from '../user/create'
-
-const { PostControler } = require('../../../controller/PostControler')
-const { DatabaseControler } = require('../../../controller/DatabaseControler')
+const { PostControler } = require('/controller/PostControler')
+const { DatabaseControler } = require('/controller/DatabaseControler')
 
 const createPost = async (req, res) => {
   DatabaseControler.connect()

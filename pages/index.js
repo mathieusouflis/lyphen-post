@@ -15,35 +15,39 @@ const Home = () => {
 
   const [posts, setPosts] = useState([])
 
-  // const fetchdata = async () => {
-  //   const request = await fetch('/api/post/getAll')
-  //   const responseJson = await request.json()
+  const fetchdata = async () => {
+    const request = await fetch('/api/post/getall')
+    const responseJson = await request.json()
 
-  //   setPosts(responseJson.posts)
-  // }
+    setPosts(responseJson.posts)
+  }
 
-  // useEffect(() => {
-  //   fetchdata()
-  // }, [])
+  useEffect(() => {
+    fetchdata()
+  }, [])
 
   return (
     <>
-      <div className="page flex flex-row h-screen w-screen">
-        <div className="header flex flex-col justify-between align-middle w-12 bg-zinc-100 dark:bg-zinc-600">
-          <Image src={butterWhiteIcon} alt="Butter Post Dark Icon" className="p-2 hidden dark:block" />
-          <Image src={butterBlackIcon} alt="Butter Post White Icon" className="p-2 block dark:hidden" />
-          <div className="buttons flex flex-col gap-4">
-            <HeaderButtons afterName="Home" iconType="maison" />
-            <HeaderButtons afterName="Search" iconType="loupe" />
-            <HeaderButtons afterName="Messages" iconType="enveloppe" />
-            <HeaderButtons afterName="Profil" iconType="personRonded" />
+      <div className="page flex flex-row h-screen w-screen overflow-hidden">
+        <div>
+          <div className="header flex flex-col h-screen justify-between align-middle w-12 bg-zinc-100 dark:bg-zinc-600">
+            <Image src={butterWhiteIcon} alt="Butter Post Dark Icon" className="p-2 hidden dark:block" />
+            <Image src={butterBlackIcon} alt="Butter Post White Icon" className="p-2 block dark:hidden" />
+            <div className="buttons flex flex-col gap-4">
+              <HeaderButtons afterName="Home" iconType="maison" />
+              <HeaderButtons afterName="Search" iconType="loupe" />
+              <HeaderButtons afterName="Messages" iconType="enveloppe" />
+              <HeaderButtons afterName="Profil" iconType="personRonded" />
+            </div>
+            <HeaderButtons afterName="Parameters" iconType="rouage" colorWhite="" colorDark="" />
           </div>
-          <HeaderButtons afterName="Parameters" iconType="rouage" colorWhite="" colorDark="" />
         </div>
-        <div className="page bg-emerald-500">
-          {/* {posts.length === 0 ? null : R.map((post) => {
-            return <Post key={post._id} post={post} />
-          }, posts)} */}
+        <div className="page overflow-y-auto w-screen flex justify-center items-center ">
+          <div className="posts h-full w-1/2">
+            {posts.length === 0 ? null : R.map((post) => {
+              return <Post key={post._id} post={post} />
+            }, posts)}
+          </div>
         </div>
       </div>
     </>

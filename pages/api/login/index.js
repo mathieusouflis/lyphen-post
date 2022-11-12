@@ -1,6 +1,6 @@
 //UTILS IMPORT
-const { loginUserValidator } = require("../../../lib/validators/loginUserValidator")
-const { DatabaseControler } = require("../../../controller/DatabaseControler")
+const { loginUserValidator } = require("/lib/validators/loginUserValidator")
+const { DatabaseControler } = require("/controller/DatabaseControler")
 const login = async (req, res) => {
   const data = req.body
   await DatabaseControler.connect()
