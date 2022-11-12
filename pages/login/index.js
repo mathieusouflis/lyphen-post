@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Input from "/components/Input"
 import SubmitButton from "/components/SubmitButton.js"
+const { useRouter } = require("next/router")
 const { useSession, signIn, signOut } = require("next-auth/react")
 
 
@@ -9,15 +10,17 @@ const Login = () => {
   const [userValidity, setUserValidity] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const router = useRouter()
 
   const submitLogin = async (e) => {
     e.preventDefault()
-    const status = await signIn('credentials', {
+    const status = await signIn('Credentials', {
       redirect: false,
       email,
       password,
       callbackUrl: '/'
     })
+    if (status.ok) router.push(status.url)
     // console.log(status)
     // const login = await fetch('/api/login/', {
     //   method: "POST",
