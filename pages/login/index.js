@@ -14,7 +14,7 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault()
-    const status = await signIn('credentials', {
+    const status = await signIn('Credentials', {
       redirect: false,
       email,
       password,
