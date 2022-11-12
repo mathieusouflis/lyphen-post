@@ -14,12 +14,13 @@ const Login = () => {
 
   const submitLogin = async (e) => {
     e.preventDefault()
-    const status = await signIn('Credentials', {
+    const status = await signIn('credentials', {
       redirect: false,
       email,
       password,
       callbackUrl: '/'
     })
+    console.log(status)
     if (status.ok) router.push(status.url)
     // console.log(status)
     // const login = await fetch('/api/login/', {
