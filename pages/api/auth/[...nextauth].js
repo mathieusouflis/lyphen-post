@@ -8,7 +8,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      async authorise(credentials, req) {
+      async authorize(credentials, req) {
         DatabaseControler.connect()
         const user = await User.findOne({ email: credentials.email })
         if (!user) throw new Error("User not found")
