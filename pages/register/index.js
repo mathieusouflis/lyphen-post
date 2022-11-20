@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -29,6 +30,7 @@ const Register = () => {
     const register = await fetch('/api/user/create/', {
       method: "POST",
       body: JSON.stringify({
+        apiKey: process.env.API_KEY,
         username: username,
         email: email,
         password: password,

@@ -15,6 +15,10 @@ class PostControler {
     return await Post.find({})
   }
 
+  static async get(id) {
+    return await Post.findOne({ _id: id }).exec()
+  }
+
   static async like(uid, postId) {
     const post = await Post.findOne({ _id: postId }).exec()
     let postLikes = post.likes

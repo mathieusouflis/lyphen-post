@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 const { useRouter } = require("next/router");
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -19,6 +20,7 @@ const Testpost = () => {
       const requestPost = await fetch('/api/post/create', {
         method: "POST",
         body: JSON.stringify({
+          apiKey: process.env.API_KEY,
           text: text,
           images: images
         }),
