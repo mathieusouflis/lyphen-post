@@ -18,7 +18,6 @@ const { useRouter } = require("next/router");
 const Home = () => {
   const { data: session, status } = useSession();
   const [posts, setPosts] = useState([]);
-  const [isSession, setIsSession] = useState();
   const router = useRouter();
 
   const fetchdata = async () => {
@@ -70,7 +69,6 @@ const Home = () => {
             <Link href='/' className={classLink}>Message</Link>
           </div>
           <div className="h-12 w-12">
-
             <Link href='/profil'>
               <HeaderButtons afterName="Parameters" iconType="rouage" colorWhite="" colorDark="" />
             </Link>

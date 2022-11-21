@@ -60,15 +60,18 @@ const Post = ({ post }) => {
           query: { post: post._id },
         }}
       >
-        {vueImage ?
-          <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center" onClick={() => {
-            setVueImage(false)
-            setVueImageLink("")
-          }}>
-            <img src={vueImageLink} alt="" className="z-10 max-w-3/4 max-h-screen w-auto h-3/4" />
-            <div className="absolute w-screen h-screen bg-slate-600 opacity-70" />
-          </div>
-          : null}
+        {
+          vueImage ?
+            <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center" onClick={
+              () => {
+                setVueImage(false)
+                setVueImageLink("")
+              }
+            }>
+              < img src={vueImageLink} alt="" className="z-10 max-w-3/4 max-h-screen w-auto h-3/4" />
+              <div className="absolute w-screen h-screen bg-slate-600 opacity-70" />
+            </div>
+            : null}
         {/* USER */}
         <div className="max-h-[calc(100%/1.3)] bg-zinc-700 hover:bg-zinc-600 transition-all duration-100 p-1 border-y border-zinc-600">
           <div className="top p-2 " >
@@ -116,8 +119,8 @@ const Post = ({ post }) => {
             </div >
           </div>
         </div >
-      </Link>
-    </div>
+      </Link >
+    </div >
   )
 }
 

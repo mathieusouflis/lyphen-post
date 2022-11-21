@@ -3,26 +3,22 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-// COMPONENT IMPORT
-import Post from "/components/Post";
-
-const Posts = async () => {
+const PostPage = async () => {
   const { data: session, status } = useSession()
-  const [posts, setPosts] = useState([])
+  const [curentPost, setCurentPost] = useState([])
   const router = useRouter()
   const { post } = router.query
 
   const fetchPost = async () => {
-    const request = await fetch('/api/post/getId', {
+    const request = await fetch('/api/post/get', {
       method: "GET",
       body: {
         apiKey: process.env.API_KEY,
-        postId: post._id
+        postId: post
       }
     });
     const requestJson = await request.json()
-    console.log(requestJson.post)
-    setPosts(requestJson.post)
+    setCurentPost(requestJson.post)
   }
 
   useEffect(() => {
@@ -35,11 +31,17 @@ const Posts = async () => {
     if (!session && status != "loading") router.push('/login');
   }, [session, status]);
 
+
   return session ? <>
-    {posts.length === 0 ? null : R.map((post) => {
-      return <Post key={post._id} post={post} />
-    }, posts)}
+    {curentPost.length === 0 ? null : R.map((post) => {
+      return <>
+        <h1>{post._id}</h1>
+      </>
+    }, curentPost)}
+    <div>
+      <h1>Hey !</h1>
+    </div>
   </> : null
 }
 
-export default Posts
+export default PostPage
