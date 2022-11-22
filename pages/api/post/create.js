@@ -3,10 +3,10 @@ const { DatabaseControler } = require('/controller/DatabaseControler')
 const { apiValidator } = require("/lib/validators/apiValidator.js")
 
 const createPost = async (req, res) => {
-  apiValidator(req.body.apiKey, res)
+  const data = JSON.parse(req.body)
+  apiValidator(data.apiKey, res)
   DatabaseControler.connect()
-  const body = req.body
-  await PostControler.create(body.text, body.images)
+  await PostControler.create(data.text, data.images)
   res.json({ message: "Post Added", status: 200 })
   res.end()
 }

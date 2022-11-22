@@ -16,7 +16,7 @@ class PostControler {
   }
 
   static async get(id) {
-    return await Post.findOne({ _id: id }).exec()
+    return await Post.findById(id).exec()
   }
 
   static async like(uid, postId) {

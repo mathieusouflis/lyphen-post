@@ -1,7 +1,7 @@
 import Icon from "./Icons"
 import classNames from 'classnames'
 import * as R from "ramda"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 //LIB IMPORT
 import { hexToDec } from "/lib/Convertors/hexTodec"
@@ -13,6 +13,23 @@ const Post = ({ post }) => {
 
   const [vueImage, setVueImage] = useState(false)
   const [vueImageLink, setVueImageLink] = useState("")
+  const [postAuthor, setPostAuthor] = useState({})
+
+  const getAuthor = async () => {
+    const response = await fetch("/api/user/get", {
+      method: "POST",
+      body: JSON.stringify({
+        userId: post.author
+      })
+    })
+    const responseJSON = await response.json()
+    setPostAuthor(responseJSON.user)
+  }
+
+  useEffect(() => {
+    getAuthor()
+  }, [])
+
 
   const likePost = async () => {
     const request = await fetch("/api/post/like", {
@@ -28,10 +45,6 @@ const Post = ({ post }) => {
 
     const requestJson = await request.json()
     alert(requestJson.message)
-  }
-
-  const postAuthor = {
-    username: "_spiie"
   }
 
   const actionsClass = classNames(
@@ -56,8 +69,8 @@ const Post = ({ post }) => {
     <div>
       <Link
         href={{
-          pathname: '/posts/[post]',
-          query: { post: post._id },
+          pathname: '/posts/[postId]',
+          query: { postId: post._id },
         }}
       >
         {

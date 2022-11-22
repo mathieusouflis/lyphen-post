@@ -8,9 +8,9 @@ const { hash } = require("bcryptjs")
 const { apiValidator } = require("/lib/validators/apiValidator.js")
 
 const createUser = async (req, res) => {
-  apiValidator(req.body.apiKey, res)
+  const data = JSON.parse(req.body)
+  apiValidator(data.apiKey, res)
   DatabaseControler.connect()
-  const data = req.body
   const usernameValidity = await usernameValidator(data.username)
   const emailValidity = await emailValidator(data.email)
   const passwordValidity = await passwordValidator(data.password)

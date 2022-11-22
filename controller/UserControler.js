@@ -9,6 +9,10 @@ class UserControler {
     })
   }
 
+  static async get(id) {
+    return await User.findById(id).exec()
+  }
+
   // static async delete(uid) {
   //   await User.deleteOne({ _id: utils.decToHex(uid) });
   // }

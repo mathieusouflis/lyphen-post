@@ -13,19 +13,20 @@ import HeaderButtons from "/components/HeaderButtons";
 import butterWhiteIcon from "/assets/icons/ButterLogoWhiteRounded.png";
 import butterBlackIcon from "/assets/icons/ButterLogoBlackRounded.png";
 import Link from "next/link";
-const { useRouter } = require("next/router");
+
 
 const Home = () => {
   const { data: session, status } = useSession();
   const [posts, setPosts] = useState([]);
+  const { useRouter } = require("next/router");
   const router = useRouter();
 
   const fetchdata = async () => {
     const request = await fetch('/api/post/getall', {
       method: "POST",
-      body: {
+      body: JSON.stringify({
         apiKey: process.env.API_KEY
-      }
+      })
     });
     const responseJson = await request.json();
 
@@ -33,11 +34,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (session && status === "authenticated") fetchdata();
-  }, [session, status]);
-
-  useEffect(() => {
-    if (!session && status != "loading") router.push('/login');
+    if (session && status === "authenticated") {
+      fetchdata();
+    } else if (!session && status != "loading") router.push('/login');
   }, [session, status]);
 
   const classLink = classNames(
