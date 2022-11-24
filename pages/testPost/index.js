@@ -11,7 +11,9 @@ const Testpost = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!session && status != "loading") router.push('/login');
+    if (session && status === "authenticated") {
+      console.log(session)
+    } else if (!session && status != "loading") router.push('/login');
   }, [session, status]);
 
   return session
