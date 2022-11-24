@@ -9,9 +9,11 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials, req) {
+
         DatabaseControler.connect()
-        const user = await User.findOne({ email: credentials.email })
+        const user = await User.findOne({ email: credentials.email }).exec()
         if (!user) throw new Error("User not found")
+        console.log(user);
 
         const checkPassword = await compare(credentials.password, user.password)
 

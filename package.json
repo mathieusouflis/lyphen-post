@@ -1,7 +1,8 @@
 {
-  "name": "butter-post-next",
+  "name": "lyphen-post",
   "version": "0.1.0",
   "private": true,
+  "author": "_spiie",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
