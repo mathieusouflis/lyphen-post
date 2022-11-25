@@ -3,12 +3,17 @@ const { PostControler } = require('/controller/PostControler')
 const { DatabaseControler } = require('/controller/DatabaseControler')
 
 //VALIDATORS IMPORTS
-const { apiValidator } = require("/lib/validators/apiValidator.js")
+const { sessionValidator } = require("/lib/validators/sessionValidator.js")
 
 const getPost = async (req, res) => {
 
-  const data = JSON.parse(req.body)
-  apiValidator(data.apiKey, res)
+  if (!await sessionValidator(req, res)) {
+    res.send("Unauthorised")
+    res.end()
+  }
+
+  let data
+  typeof req.body === "string" ? data = JSON.parse(req.body) : data = req.body
 
   DatabaseControler.connect()
 

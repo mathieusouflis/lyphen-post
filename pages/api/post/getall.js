@@ -3,11 +3,14 @@ const { PostControler } = require('/controller/PostControler')
 const { DatabaseControler } = require('/controller/DatabaseControler')
 
 //VALIDATORS IMPORTS
-const { apiValidator } = require("/lib/validators/apiValidator.js")
+const { sessionValidator } = require("/lib/validators/sessionValidator.js")
 
 const getAllPosts = async (req, res) => {
 
-  apiValidator(req.body.apiKey, res)
+  if (!await sessionValidator(req, res)) {
+    res.send("Unauthorised")
+    res.end()
+  }
 
   DatabaseControler.connect()
 

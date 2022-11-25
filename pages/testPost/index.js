@@ -22,7 +22,6 @@ const Testpost = () => {
       const requestPost = await fetch('/api/post/create', {
         method: "POST",
         body: JSON.stringify({
-          apiKey: process.env.API_KEY,
           text: text,
           images: images
         }),

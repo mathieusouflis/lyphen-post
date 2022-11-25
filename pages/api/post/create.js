@@ -1,23 +1,22 @@
-//AUTH IMPORTS
-import { unstable_getServerSession } from "next-auth"
-import { authOptions } from "./auth/[...nextauth]"
-
 //CONTROLERS IMPORTS
 const { PostControler } = require('/controller/PostControler')
 const { DatabaseControler } = require('/controller/DatabaseControler')
 
 //VALIDATORS IMPORTS
-const { apiValidator } = require("/lib/validators/apiValidator.js")
+const { sessionValidator } = require("/lib/validators/sessionValidator.js")
 
 
 const createPost = async (req, res) => {
 
-  const data = JSON.parse(req.body)
-  apiValidator(data.apiKey, res)
+  if (!await sessionValidator(req, res)) {
+    res.send("Unauthorised")
+    res.end()
+  }
 
+  let data
+  typeof req.body === "string" ? data = JSON.parse(req.body) : data = req.body
   DatabaseControler.connect()
 
-  const session = await unstable_getServerSession(req, res, authOptions)
   await PostControler.create(session.id, data.text, data.images)
 
   res.json({

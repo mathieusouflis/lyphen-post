@@ -23,10 +23,7 @@ const Home = () => {
 
   const fetchdata = async () => {
     const request = await fetch('/api/post/getall', {
-      method: "POST",
-      body: JSON.stringify({
-        apiKey: process.env.API_KEY
-      })
+      method: "GET",
     });
     const responseJson = await request.json();
 

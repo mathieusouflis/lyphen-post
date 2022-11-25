@@ -13,7 +13,6 @@ const PostPage = () => {
     const request = await fetch('/api/post/get', {
       method: "POST",
       body: JSON.stringify({
-        apiKey: process.env.API_KEY,
         postId: postId
       })
     });
