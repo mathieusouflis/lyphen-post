@@ -1,14 +1,14 @@
 //VALIDATORS IMPORTS
 const { loginUserValidator } = require("/lib/validators/loginUserValidator")
-const { apiValidator } = require("/lib/validators/apiValidator.js")
+const { sessionValidator } = require("/lib/validators/sessionValidator.js")
 
 //CONTROLERS IMPORTS
 const { DatabaseControler } = require("/controller/DatabaseControler")
 
 const login = async (req, res) => {
 
-  const data = JSON.parse(req.body)
-  apiValidator(data.apiKey, res)
+  let data
+  typeof req.body === "string" ? data = JSON.parse(req.body) : data = req.body
 
   await DatabaseControler.connect()
 

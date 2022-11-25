@@ -9,11 +9,11 @@ const { DatabaseControler } = require('/controller/DatabaseControler')
 const { usernameValidator } = require('/lib/validators/usernameValidator')
 const { emailValidator } = require('/lib/validators/emailValidator')
 const { passwordValidator } = require('/lib/validators/passwordValidator')
-const { apiValidator } = require("/lib/validators/apiValidator.js")
 
 const createUser = async (req, res) => {
-  const data = JSON.parse(req.body)
-  apiValidator(data.apiKey, res)
+
+  let data
+  typeof req.body === "string" ? data = JSON.parse(req.body) : data = req.body
 
   DatabaseControler.connect()
 
