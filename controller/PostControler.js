@@ -2,11 +2,12 @@ const { Post } = require('/Model/Posts')
 
 class PostControler {
 
-  static async create(text, images) {
+  static async create(author, text, images) {
     await Post.create({
-      author: "635e8de77363ad7d6636085e",
+      author,
       content: {
-        text
+        text,
+        images
       },
     })
   }
