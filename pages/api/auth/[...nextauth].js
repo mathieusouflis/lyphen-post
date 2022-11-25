@@ -11,7 +11,7 @@ const { DatabaseControler } = require("/controller/DatabaseControler.js")
 //MODELS IMPORTS
 const { User } = require('/Model/User')
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -48,4 +48,6 @@ export default NextAuth({
     secret: process.env.JWT_SECRET,
     encryption: true,
   }
-})
+}
+
+export default NextAuth(authOptions)
