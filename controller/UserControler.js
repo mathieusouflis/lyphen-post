@@ -2,6 +2,8 @@ const { User } = require("/Model/User.js")
 
 class UserControler {
   static async create(username, email, password) {
+
+    //CREATION
     await User.create({
       username: username,
       email: email.toLowerCase(),
@@ -9,8 +11,26 @@ class UserControler {
     })
   }
 
+  //GET
   static async get(id) {
     return await User.findById(id).exec()
+  }
+
+  //CHANGEMENTS
+  static async changeUsername(uid, newUsername) {
+    await User.updateOne({ _id: uid }, { username: newUsername })
+  }
+
+  static async changePassword(uid, newPassword) {
+    await User.updateOne({ _id: uid }, { password: newPassword })
+  }
+
+  static async changeEmail(uid, newEmail) {
+    await User.updateOne({ _id: uid }, { email: newEmail })
+  }
+
+  static async changeAvatar(uid, newAvatar) {
+    await User.updateOne({ _id: uid }, { avatar: newAvatar })
   }
 
   // static async delete(uid) {
