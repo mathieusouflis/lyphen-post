@@ -5,12 +5,12 @@ const User = mongoose.models.User || mongoose.model('User', new Schema({
   username: String, // Le nom de l'utilisateur.
   email: String, // L'email du compte (..)
   password: String, // Le mot de pass du compte (CHIFFRE)
-  status: { type: String, default: "Open" }, // Open, Closed, Locked, Ban 
-  roles: { type: Array, default: ["User"] }, // Owner, Admin, Mod, User
+  status: { type: String, default: "Open" }, // Open, Closed, Private, Locked, Banned
+  role: { type: String, default: "User" }, // Owner, Admin, Mod, User
   avatar: { type: String, default: "https://i.imgur.com/WReVJjX.png" }, // D'autres liers vers des images
   description: { type: String, default: "" }, // La description du compte
   abonements: Array, // La liste de ses abonement
-  abones: Array, // La liste de ses abonnés
+  followers: Array, // La liste de ses abonnés
   postLiked: Array, // La liste des ID des postes like
   posts: Array, // La liste des ID de ses posts
   comments: Array, // La liste des ID de ses commentaires

@@ -1,9 +1,9 @@
 const { User } = require("/Model/User.js")
 
 class UserControler {
-  static async create(username, email, password) {
 
-    //CREATION
+  //CREATION
+  static async create(username, email, password) {
     await User.create({
       username: username,
       email: email.toLowerCase(),
@@ -16,7 +16,47 @@ class UserControler {
     return await User.findById(id).exec()
   }
 
-  //CHANGEMENTS
+  //ACTIONS
+
+  //// Status actions
+  static async open(uid, reason = "") {
+    await User.updateOne({ _id: uid }, { status: "Open" })
+  }
+
+  static async Close(uid, reason = "") {
+    await User.updateOne({ _id: uid }, { status: "Closed" })
+  }
+
+  static async private(uid, reason = "") {
+    await User.updateOne({ _id: uid }, { status: "Private" })
+  }
+
+  static async lock(uid, reason = "") {
+    await User.updateOne({ _id: uid }, { status: "Locked" })
+  }
+
+  static async ban(uid, reason = "") {
+    await User.updateOne({ _id: uid }, { status: "Banned" })
+  }
+
+  ////Roles Actions
+  static async setOwner(uid) {
+    await User.updateOne({ _id: uid }, { role: "Owner" })
+  }
+
+  static async setAdmin(uid) {
+    await User.updateOne({ _id: uid }, { role: "Admin" })
+  }
+
+  static async setMod(uid) {
+    await User.updateOne({ _id: uid }, { role: "Mod" })
+  }
+
+  static async setUser(uid) {
+    await User.updateOne({ _id: uid }, { role: "User" })
+  }
+
+  //// User Profil Actions
   static async changeUsername(uid, newUsername) {
     await User.updateOne({ _id: uid }, { username: newUsername })
   }
@@ -33,18 +73,41 @@ class UserControler {
     await User.updateOne({ _id: uid }, { avatar: newAvatar })
   }
 
-  // static async delete(uid) {
-  //   await User.deleteOne({ _id: utils.decToHex(uid) });
-  // }
+  //// User Activity
+  static async addAbonement(uid, abonementId) {
+    let user = await User.findById(uid).exec()
+    user.abonements.push(abonementId)
+    await User.updateOne({ _id: uid }, { abonnements: user.abonements })
+  }
 
-  // static async update(uid, changes) {
-  //   User.findByIdAndUpdate(uid, { changes })
-  // }
+  static async addFollow(uid, followId) {
+    let user = await User.findById(uid).exec()
+    user.followers.push(followId)
+    await User.updateOne({ _id: uid }, { abonnements: user.followers })
+  }
 
-  // static getId = async (uid) => {
-  //   return User.findById(utils.decToHex(uid), (err, user) => {
-  //     return user
-  //   })
+  static async addPostLike(uid, postId) {
+    let user = await User.findById(uid).exec()
+    user.postLiked.push(postId)
+    await User.updateOne({ _id: uid }, { postLiked: user.postLiked })
+  }
+
+  static async addPost(uid, postId) {
+    let user = await User.findById(uid).exec()
+    user.posts.push(postId)
+    await User.updateOne({ _id: uid }, { postLiked: user.posts })
+  }
+
+  static async addComment(uid, commentId) {
+    let user = await User.findById(uid).exec()
+    user.comments.push(commentId)
+    await User.updateOne({ _id: uid }, { postLiked: user.comments })
+  }
+
+  // static async addMessages(uid, ...) {
+  //   let user = await User.findById(uid).exec()
+  //   user.postLiked.push(postId)
+  //   await User.updateOne({ _id: uid }, { postLiked: user.postLiked })
   // }
 }
 
