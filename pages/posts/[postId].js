@@ -28,7 +28,6 @@ const PostPage = () => {
     } else if (!session && status != "loading") router.push('/login');
   }, [session, status]);
 
-
   // return session ? <>
   //   {/* {curentPost.length === 0 ? null : R.map((post) => {
   //     return <>

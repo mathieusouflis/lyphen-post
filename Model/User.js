@@ -8,6 +8,7 @@ const User = mongoose.models.User || mongoose.model('User', new Schema({
   status: { type: String, default: "Open" }, // Open, Closed, Private, Locked, Banned
   role: { type: String, default: "User" }, // Owner, Admin, Mod, User
   avatar: { type: String, default: "https://i.imgur.com/WReVJjX.png" }, // D'autres liers vers des images
+  banner: { type: String, default: "https://i.imgur.com/" },
   description: { type: String, default: "" }, // La description du compte
   abonements: Array, // La liste de ses abonement
   followers: Array, // La liste de ses abonnés

@@ -16,6 +16,11 @@ class UserControler {
     return await User.findById(id).exec()
   }
 
+  ////USERNAME GET
+  static async getByUsername(username) {
+    return await User.findOne({ username: username }).exec();
+  }
+
   //ACTIONS
 
   //// Status actions
